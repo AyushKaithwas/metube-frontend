@@ -13,14 +13,18 @@ function FileUpload() {
     if (selectedFile) {
       // Make sure a file is selected
       const formData = new FormData();
-      formData.append("file", selectedFile);
+      formData.append("myFile", selectedFile);
 
       try {
-        await axios.post("http://localhost:8080/upload", formData, {
-          headers: {
-            // The 'Content-Type' header will be set automatically by axios for FormData
-          },
-        });
+        await axios.post(
+          "http://localhost:8080/api/upload/transcode",
+          formData,
+          {
+            headers: {
+              // The 'Content-Type' header will be set automatically by axios for FormData
+            },
+          }
+        );
         alert("File uploaded successfully");
       } catch (error) {
         console.error("Error uploading file:", error);
